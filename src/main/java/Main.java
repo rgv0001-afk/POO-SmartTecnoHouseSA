@@ -2,7 +2,8 @@ package main;
 
 import modelo.*;
 
-public class Main {
+public class Main
+{
 
     public static void main(String[] args) {
 
@@ -19,7 +20,7 @@ public class Main {
         ActuadorVentilador ventilador = new ActuadorVentilador();
         ActuadorPersiana persiana = new ActuadorPersiana();
 
-        // Añadir dispositivos a la casa
+        // Añadir dispositivos
         casa.añadirSensor(temp);
         casa.añadirSensor(luz);
         casa.añadirSensor(pir);
@@ -29,15 +30,14 @@ public class Main {
         casa.añadirActuador(ventilador);
         casa.añadirActuador(persiana);
 
-        // Crear reglas
+        // Añadir reglas
         ReglaVentilacionConfortable regla1 = new ReglaVentilacionConfortable();
         ReglaIluminacionAutomatica regla2 = new ReglaIluminacionAutomatica();
 
-        // Añadir reglas a la casa
         casa.añadirRegla(regla1);
         casa.añadirRegla(regla2);
 
-        // Probar el sistema
+        // Probar
         casa.actualizarSensores();
         casa.aplicarReglas();
         casa.mostrarEstado();
