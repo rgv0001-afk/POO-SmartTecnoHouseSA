@@ -3,12 +3,10 @@ package modelo;
 public class ReglaVentilacionConfortable implements Regla {
 
     public ReglaVentilacionConfortable() {
-        // Constructor vacío
     }
 
     @Override
-    public void aplicar() {
+    public void aplicar(Sensor[] sensores, Actuador[] actuadores) {
         System.out.println("Aplicando regla: Ventilación Confortable");
-        // logica
     }
 }
