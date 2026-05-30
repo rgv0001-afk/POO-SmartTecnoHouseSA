@@ -9,6 +9,9 @@ public class Controlador {
     public Controlador() {
         casa = new SmartTecnoHouse();
 
+        // Cargar estado anterior si existe
+        casa.cargarEstado();
+
         // Crear sensores
         SensorTemperatura temp = new SensorTemperatura();
         SensorLuz luz = new SensorLuz();
@@ -47,5 +50,10 @@ public class Controlador {
     public void actualizarTodo() {
         casa.actualizarSensores();
         casa.aplicarReglas();
+    }
+
+    // Metodo para guardar el estado (usado desde Vista al cerrar)
+    public void guardarEstado() {
+        casa.guardarEstado();
     }
 }

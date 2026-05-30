@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.*;
+
 public class ReglaVentilacionConfortable implements Regla {
 
     public ReglaVentilacionConfortable() {
@@ -7,29 +9,32 @@ public class ReglaVentilacionConfortable implements Regla {
 
     @Override
     public void aplicar(Sensor[] sensores, Actuador[] actuadores) {
-        System.out.println("=== REGLA VENTILACIÓN ===");
-
         for (int i = 0; i < sensores.length; i++) {
             if (sensores[i] != null && sensores[i].getID().equals("temp")) {
                 double temp = sensores[i].getValor();
-                System.out.println("Temperatura: " + temp);
 
-                if (temp > 24.0) {
-                    for (int j = 0; j < actuadores.length; j++) {
-                        if (actuadores[j] != null && actuadores[j].getID().equals("fan")) {
+                for (int j = 0; j < actuadores.length; j++) {
+                    if (actuadores[j] != null && actuadores[j].getID().equals("fan")) {
+                        if (temp > 24.0) {
                             actuadores[j].ejecutarAccion("ON");
                             System.out.println("→ VENTILADOR ENCENDIDO");
-                        }
-                    }
-                } else {
-                    for (int j = 0; j < actuadores.length; j++) {
-                        if (actuadores[j] != null && actuadores[j].getID().equals("fan")) {
+                            registrarAccion("Ventilador -> ON (temperatura: " + temp + ")");
+                        } else {
                             actuadores[j].ejecutarAccion("OFF");
                             System.out.println("→ VENTILADOR APAGADO");
+                            registrarAccion("Ventilador -> OFF (temperatura: " + temp + ")");
                         }
                     }
                 }
             }
+        }
+    }
+
+    private void registrarAccion(String accion) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter("actuadores.log", true))) {
+            pw.println(new java.util.Date() + " - " + accion);
+        } catch (Exception e) {
+            // silencioso
         }
     }
 }

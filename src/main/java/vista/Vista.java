@@ -3,6 +3,8 @@ package vista;
 import controlador.Controlador;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Vista extends JFrame {
 
@@ -24,14 +26,21 @@ public class Vista extends JFrame {
         JButton boton = new JButton("Actualizar Estado");
         boton.addActionListener(e -> actualizarPantalla());
 
-        // Layout que sí funciona
         setLayout(new BorderLayout());
         add(scroll, BorderLayout.CENTER);
         add(boton, BorderLayout.SOUTH);
 
-        setVisible(true);
+        // Guardar automáticamente al cerrar la ventana
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                controlador.guardarEstado();
+                System.out.println("Estado guardado automáticamente antes de cerrar");
+            }
+        });
 
-        actualizarPantalla(); // primera carga
+        setVisible(true);
+        actualizarPantalla();
     }
 
     private void actualizarPantalla() {

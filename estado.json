@@ -1,0 +1,13 @@
+{
+  "sensores": [
+    { "id": "temp", "nombre": "Sensor de Temperatura", "valor": 28.111973563117807 },
+    { "id": "light", "nombre": "Sensor de Luz", "valor": 86.3664952403819 },
+    { "id": "pir", "nombre": "Sensor de Presencia", "valor": 1.0 },
+    { "id": "hum", "nombre": "Sensor de Humedad", "valor": 46.070247203538614 }
+  ],
+  "actuadores": [
+    { "id": "bulb", "nombre": "Bombilla", "estado": "OFF" },
+    { "id": "fan", "nombre": "Ventilador", "estado": "ON" },
+    { "id": "persiana", "nombre": "Persiana Motorizada", "estado": "UP" }
+  ]
+}
