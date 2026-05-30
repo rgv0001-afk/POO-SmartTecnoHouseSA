@@ -6,12 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Iniciar la interfaz gráfica
         Vista vista = new Vista();
-
-        System.out.println("=== INICIANDO SISTEMA SMART TECNOHOUSE ===");
-
-        vista.mostrar();
-
-        System.out.println("=== FIN DE LA EJECUCIÓN ===");
     }
 }
