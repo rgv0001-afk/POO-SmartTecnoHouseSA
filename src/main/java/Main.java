@@ -1,5 +1,3 @@
-package main;
-
 import vista.Vista;
 
 public class Main {

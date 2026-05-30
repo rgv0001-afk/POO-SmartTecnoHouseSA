@@ -7,17 +7,25 @@ public class ReglaVentilacionConfortable implements Regla {
 
     @Override
     public void aplicar(Sensor[] sensores, Actuador[] actuadores) {
-        System.out.println("Aplicando regla: Ventilación Confortable");
+        System.out.println("=== REGLA VENTILACIÓN ===");
 
-        // Buscar sensor de temperatura
         for (int i = 0; i < sensores.length; i++) {
             if (sensores[i] != null && sensores[i].getID().equals("temp")) {
-                if (sensores[i].getValor() > 25.0) {
-                    // Buscar ventilador y encenderlo
+                double temp = sensores[i].getValor();
+                System.out.println("Temperatura: " + temp);
+
+                if (temp > 24.0) {
                     for (int j = 0; j < actuadores.length; j++) {
                         if (actuadores[j] != null && actuadores[j].getID().equals("fan")) {
                             actuadores[j].ejecutarAccion("ON");
-                            System.out.println("→ Ventilador encendido (hace calor)");
+                            System.out.println("→ VENTILADOR ENCENDIDO");
+                        }
+                    }
+                } else {
+                    for (int j = 0; j < actuadores.length; j++) {
+                        if (actuadores[j] != null && actuadores[j].getID().equals("fan")) {
+                            actuadores[j].ejecutarAccion("OFF");
+                            System.out.println("→ VENTILADOR APAGADO");
                         }
                     }
                 }

@@ -1,7 +1,6 @@
 package modelo;
 
-public class SmartTecnoHouse
-{
+public class SmartTecnoHouse {
 
     private Sensor[] sensores;
     private Actuador[] actuadores;
@@ -11,8 +10,7 @@ public class SmartTecnoHouse
     private int numActuadores;
     private int numReglas;
 
-    public SmartTecnoHouse()
-    {
+    public SmartTecnoHouse() {
         sensores = new Sensor[10];
         actuadores = new Actuador[10];
         reglas = new Regla[10];
@@ -21,58 +19,56 @@ public class SmartTecnoHouse
         numReglas = 0;
     }
 
-    public void añadirSensor(Sensor s)
-    {
+    public void añadirSensor(Sensor s) {
         if (numSensores < 10) {
             sensores[numSensores] = s;
             numSensores = numSensores + 1;
         }
     }
 
-    public void añadirActuador(Actuador a)
-    {
+    public void añadirActuador(Actuador a) {
         if (numActuadores < 10) {
             actuadores[numActuadores] = a;
             numActuadores = numActuadores + 1;
         }
     }
 
-    public void añadirRegla(Regla r)
-    {
+    public void añadirRegla(Regla r) {
         if (numReglas < 10) {
             reglas[numReglas] = r;
             numReglas = numReglas + 1;
         }
     }
 
-    public void actualizarSensores()
-    {
+    public void actualizarSensores() {
         for (int i = 0; i < numSensores; i++) {
             sensores[i].actualizarValor();
         }
     }
 
-    public void aplicarReglas()
-    {
+    public void aplicarReglas() {
         for (int i = 0; i < numReglas; i++) {
             reglas[i].aplicar(sensores, actuadores);
         }
     }
 
-    public void mostrarEstado()
-    {
-        System.out.println("=== ESTADO DE LA CASA ===");
+    public String getEstadoComoString() {
+        String texto = "=== ESTADO DE LA CASA ===\n\nSensores:\n";
 
-        System.out.println("Sensores:");
-        for (int i = 0; i < numSensores; i++)
-        {
-            System.out.println("- " + sensores[i].getNombre() + ": " + sensores[i].getEstadoActual());
+        for (int i = 0; i < numSensores; i++) {
+            texto += "- " + sensores[i].getNombre() + ": " + sensores[i].getEstadoActual() + "\n";
         }
 
-        System.out.println("Actuadores:");
-        for (int i = 0; i < numActuadores; i++)
-        {
-            System.out.println("- " + actuadores[i].getNombre() + ": " + actuadores[i].getEstadoActual());
+        texto += "\nActuadores:\n";
+        for (int i = 0; i < numActuadores; i++) {
+            texto += "- " + actuadores[i].getNombre() + ": " + actuadores[i].getEstadoActual() + "\n";
         }
+
+        return texto;
+    }
+
+    // Método auxiliar para saber cuántas reglas hay
+    public int getNumReglas() {
+        return numReglas;
     }
 }

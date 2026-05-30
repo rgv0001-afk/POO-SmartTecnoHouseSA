@@ -20,7 +20,7 @@ public class Controlador {
         ActuadorVentilador ventilador = new ActuadorVentilador();
         ActuadorPersiana persiana = new ActuadorPersiana();
 
-        // Añadirlos a la casa
+        // Añadir dispositivos
         casa.añadirSensor(temp);
         casa.añadirSensor(luz);
         casa.añadirSensor(pir);
@@ -29,6 +29,15 @@ public class Controlador {
         casa.añadirActuador(bombilla);
         casa.añadirActuador(ventilador);
         casa.añadirActuador(persiana);
+
+        // Añadir reglas
+        ReglaVentilacionConfortable regla1 = new ReglaVentilacionConfortable();
+        ReglaIluminacionAutomatica regla2 = new ReglaIluminacionAutomatica();
+
+        casa.añadirRegla(regla1);
+        casa.añadirRegla(regla2);
+
+        System.out.println("Sistema iniciado correctamente con " + casa.getNumReglas() + " reglas");
     }
 
     public SmartTecnoHouse getCasa() {
